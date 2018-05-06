@@ -31,9 +31,10 @@ export default class Title extends React.Component {
           <NavbarBrand>Clicky Game</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-                <Nav className="col-md-5 offset-1">Click on an image to earn points, but don't click on any more than once!</Nav>            
-              <Nav className="col-md-2 offset-1">Score: {this.props.score}</Nav>
-              <Nav className="col-md-2 offset-1">Top Score: {this.props.topScore}</Nav>
+                <Nav className="col-md-5 offset-1">Click on an image to earn points, but don't click on any more than once!</Nav>  
+                <Nav className="col-md-2">{this.props.gameState}</Nav>          
+              <Nav className="col-md-2">Score: {this.props.score}</Nav>
+              <Nav className="col-md-2">Top Score: {this.props.topScore}</Nav>
        
           </Collapse>
         </Navbar>

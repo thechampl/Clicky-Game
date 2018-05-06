@@ -24,6 +24,7 @@ class App extends Component {
     if (!friends[id - 1].clicked) {
       friends[id - 1].clicked = true;
       this.setState({
+        gameState: "Correct",
         score: this.state.score + 1,
         friends: this.state.friends.sort(function (a, b) {
           return Math.random();
@@ -31,8 +32,12 @@ class App extends Component {
       })
       
     } else {
+      this.setState({
+        gameState: "Game Over!",
         friends: initialState
-    }
+        
+      })
+      }
   }
     
   
@@ -51,6 +56,7 @@ class App extends Component {
         <Title
         score={this.state.score}
         topScore={this.state.topScore}
+        gameState={this.state.gameState}
         ></Title>
     <CardContainer>
         {this.state.friends.map(friend => (
