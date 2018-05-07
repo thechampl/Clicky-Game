@@ -11,6 +11,7 @@ const initialState = {
   friends,
   clicked: false,
   score: 0,
+  topScore: 0
 };
 class App extends Component {
   // Setting this.state.friends to the friends json array
@@ -26,11 +27,18 @@ class App extends Component {
       console.log(friends[id - 1].clicked);
       if (!friends[id - 1].clicked) {
         friends[id - 1].clicked = true;
-        this.setState({
+        let topScore = this.state.score
+        if (this.state.topScore <= this.state.score){
+          this.setState({
+          topScore: this.state.topScore +1
+          })
+        }
+        this.setState({          
           gameState: "Correct!",
           score: this.state.score + 1,
           friends: this.state.friends.sort(function (a, b) {
             return Math.random();
+            
           })
         })
       
@@ -74,6 +82,7 @@ class App extends Component {
             shuffle={this.shuffle}
             increment={this.increment}
             score={this.score}
+
           />
         ))}
        </CardContainer>
