@@ -6,9 +6,10 @@ import friends from "./friends.json";
 import CardContainer from "./components/CardContainer";
 
 import "./App.css";
+
 const initialState = {
   friends,
-  increment: false,
+  clicked: false,
   score: 0,
 };
 class App extends Component {
@@ -16,27 +17,33 @@ class App extends Component {
   state = initialState;
 
 
-  
 
 
-  shuffle = (id) => {
-    console.log(friends[id - 1].clicked);
-    if (!friends[id - 1].clicked) {
-      friends[id - 1].clicked = true;
-      this.setState({
-        gameState: "Correct",
-        score: this.state.score + 1,
-        friends: this.state.friends.sort(function (a, b) {
-          return Math.random();
+
+ 
+
+    shuffle = (id) => {
+      console.log(friends[id - 1].clicked);
+      if (!friends[id - 1].clicked) {
+        friends[id - 1].clicked = true;
+        this.setState({
+          gameState: "Correct!",
+          score: this.state.score + 1,
+          friends: this.state.friends.sort(function (a, b) {
+            return Math.random();
+          })
         })
-      })
       
-    } else {
+    } else {let newScore =0;
       this.setState({
-        gameState: "Game Over!",
-        friends: initialState
-        
-      })
+        score: newScore,
+        gameState: "Game Over!"
+      });
+     let newArr = friends;
+    for ( var i=0;i<newArr.length;i++){
+          newArr[i].clicked = false;
+      }
+      this.setState({friends: newArr})
       }
   }
     
